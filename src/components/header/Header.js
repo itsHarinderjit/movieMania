@@ -12,7 +12,7 @@ function Header() {
     const {user,setUser} = useContext(currentUserContext)
     useEffect(()=> {
         const data = localStorage.getItem("userInfo")
-        if(data!=='null') {
+        if(data!=='null' && data!=null) {
             setUser(JSON.parse(data))
             setIsLogedIn(true)
         }
