@@ -46,7 +46,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 300px;
+    width: 100px;
 }
 
 .play-button-icon-container {
@@ -70,10 +70,11 @@
 }
 
 .movie-functions {
-    height: 4rem;
+    height: 3rem;
     display: flex;
     flex-direction: row;
     align-self: center;
+    justify-content: space-between;
 }
 
 @media only screen and (max-width: 800px) {

@@ -14,8 +14,6 @@ function Reviews({getMovieData,movie,reviews,setReviews}) {
     },[])
 
     const addReview = async (e)=>{
-        console.log(typeof(reviews))
-        console.log(Array.isArray(reviews))
         e.preventDefault()
         try {
             const rev = revText.current;

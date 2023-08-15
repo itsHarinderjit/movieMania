@@ -1,0 +1,52 @@
+.loginFormWrapper {
+    z-index: 2;
+    background-color: rgba(255, 215, 0, 0.2);
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.loginForm {
+    background-color: black;
+    position: absolute;
+    height: 60vh;
+    width: 30vw;
+    margin-left: auto;
+    margin-right: auto;
+    left: 35vw;
+    top: 20vh;
+    padding-top: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
+    border-radius: 10px;
+}
+
+.title {
+    color: gold;
+    font-weight: bold;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btnGrp {
+    display: flex;
+    justify-content: space-around;
+}
+
+.formBtn {
+    width: 150px;
+}
+
+.errorMsg {
+    color: red;
+    margin-top: 10px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}

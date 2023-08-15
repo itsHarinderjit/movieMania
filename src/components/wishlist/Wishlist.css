@@ -1,0 +1,76 @@
+.wishlist-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.msg {
+    color: white;
+    font-size: 20px;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+}
+
+.movie-container {
+    height: 330px;
+    width: 170px;
+    
+    margin:10px;
+}
+
+.poster-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.poster {
+    height: 250px;
+    animation: hoverPosterBack 0.5s ease;
+    animation-fill-mode: backwards;
+    cursor: pointer;
+}
+
+.poster:hover {
+    filter: brightness(0.8);
+    animation: hoverPoster 0.5s ease;
+    animation-fill-mode: forwards;
+}
+
+.movie-title {
+    font-weight: 600;
+    width: 150px;
+}
+
+.movie-attributes {
+    width: inherit;
+    margin-top: 10px;
+    font-weight: 300;
+    font-size: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;   
+}
+
+@keyframes hoverPoster {
+    from {
+        scale: 1;
+        rotate: 0deg;
+    }
+    to {
+        scale: 1.2;
+        rotate: 10deg;
+    }
+}
+
+@keyframes hoverPosterBack {
+    from {
+        scale: 1.2;
+        rotate: 10deg;
+    }
+    to {
+        scale: 1;
+        rotate: 0deg;
+    }
+}
