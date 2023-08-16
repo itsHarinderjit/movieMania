@@ -17,16 +17,19 @@ function Movies({movies}) {
         navigate(`/Reviews/${movieId}`)
     }
     const {user,setUser} = useContext(currentUserContext)
-    async function addMovieToWishlist(movie) {
+    async function addMovieTowatchlist(movie) {
         if(user===null) {
-            toast.info("LogIn to add movies to your wishlist",{autoClose:3000,theme:'dark'})
+            toast.info("LogIn to add movies to your watchlist",{autoClose:3000,theme:'dark'})
         }   
         else {
             const response = await api.post('/api/v1/user/addMovie',{userName:user.userName,imdbId:movie.imdbId})
             const data = user
-            data.wishlist.push(movie);
+            data.watchlist.push(movie);
             setUser(data)
+            const element = document.getElementById(`watchlistButton${movie.imdbId}`)
+            element.style.display = 'none'
             localStorage.setItem("userInfo",JSON.stringify(user))
+            toast.info("Movie added to your watchlist",{autoClose:3000,theme:'dark'})
         }
     }
   return (
@@ -56,7 +59,15 @@ function Movies({movies}) {
                                         </div>
                                     </Link>
                                     <Button variant='info' onClick={()=>reviews(movie.imdbId)} style={{height:'40px',marginRight:'10px'}}>Reviews</Button>
-                                    <Button variant='info' style={{height:'40px',marginLeft:'10px'}} onClick={()=>addMovieToWishlist(movie)} >Add to Wishlist</Button>
+                                    {
+                                        user !==null && user.watchlist.some((m)=>{
+                                            return m.imdbId === movie.imdbId
+                                        }) ? (
+                                            <></>
+                                        ) : (
+                                            <Button variant='info' style={{height:'40px',marginLeft:'10px'}} onClick={()=>addMovieTowatchlist(movie)} id={`watchlistButton${movie.imdbId}`} >Add to watchlist</Button>
+                                        )
+                                    }
                                 </div>
                             </div>
                         </div>

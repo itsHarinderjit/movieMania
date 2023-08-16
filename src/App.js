@@ -7,7 +7,7 @@ import Home from './components/home/Home';
 import Header from './components/header/Header';
 import Trailer from './components/trailer/Trailer';
 import Reviews from './components/reviews/Reviews';
-import Wishlist from './components/wishlist/Wishlist';
+import Wishlist from './components/wishlist/Watchlist';
 
 export const currentUserContext = createContext(null)
 
@@ -44,7 +44,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout/>} >
             <Route path='/' element={<Home movies={movies} />}/>
-            <Route path='/Wishlist' element={<Wishlist/>}/>
+            <Route path='/Watchlist' element={<Wishlist/>}/>
             <Route path='/Trailer/:ytTrailerId' element={<Trailer/>}/>
             <Route path='/Reviews/:movieId' element={<Reviews getMovieData={getMovieData} movie={movie} reviews={reviews} setReviews={setReviews} />}/>
           </Route>

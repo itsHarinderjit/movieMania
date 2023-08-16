@@ -10,6 +10,7 @@ function Header() {
     const [isFormOpen,setIsFormOpen] = useState(false)
     const [isLogedIn,setIsLogedIn] = useState(false)
     const {user,setUser} = useContext(currentUserContext)
+    const [type,setType] = useState()
     useEffect(()=> {
         const data = localStorage.getItem("userInfo")
         if(data!=='null' && data!=null) {
@@ -28,7 +29,7 @@ function Header() {
                 <Navbar.Collapse id='navbarScroll'>
                     <Nav className='me-auto my-2 my-lg-0' style={{maxHeight: '100px'}} navbarScroll >
                         <NavLink className={'nav-link'} to={'/'}>Home</NavLink>
-                        <NavLink className={'nav-link'} to={'/wishlist'}>Wish List</NavLink>
+                        <NavLink className={'nav-link'} to={'/watchlist'}>Watch List</NavLink>
                     </Nav>
                     {
                         isLogedIn ? (
@@ -42,8 +43,14 @@ function Header() {
                             </>
                         ) : (
                             <>
-                                <Button variant='outline-info' className='me-2' onClick={()=>setIsFormOpen(true)} >Login</Button>
-                                <Button variant='outline-info' onClick={()=>setIsFormOpen(true)} >Register</Button>
+                                <Button variant='outline-info' className='me-2' onClick={()=>{
+                                    setIsFormOpen(true)
+                                    setType('LogIn')
+                                }} >Login</Button>
+                                <Button variant='outline-info' onClick={()=>{
+                                    setIsFormOpen(true)
+                                    setType('Register')
+                                }} >Register</Button>
                             </>
                         )
                     }
@@ -51,7 +58,7 @@ function Header() {
             </Container>
         </Navbar>
         {
-            isFormOpen && <LogInForm setIsFormOpen={setIsFormOpen} setIsLogedIn={setIsLogedIn} setUser={setUser} />
+            isFormOpen && <LogInForm type={type} setIsFormOpen={setIsFormOpen} setIsLogedIn={setIsLogedIn} setUser={setUser} />
         }
     </>
   )

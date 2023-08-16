@@ -1,4 +1,4 @@
-.wishlist-container {
+.watchlist-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -7,7 +7,7 @@
 .msg {
     color: white;
     font-size: 20px;
-    width: 250px;
+    width: 275px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 200px;

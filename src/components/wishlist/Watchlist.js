@@ -3,11 +3,11 @@ import { currentUserContext } from '../../App'
 import { Link, useNavigate } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
-import './Wishlist.css'
+import './Watchlist.css'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function Wishlist() {
+function watchlist() {
     const {user,setUser} = useContext(currentUserContext)
     const navigate = useNavigate()
     function Navigate(movie) {
@@ -15,9 +15,9 @@ function Wishlist() {
     }
   return (
     user !== null ? (
-      <div className='wishlist-container'>
+      <div className='watchlist-container'>
       {
-        user.wishlist?.map((movie)=>{
+        user.watchlist?.map((movie)=>{
             return (
                 <div className='movie-container'>
                     <div className='poster-container' onClick={()=>Navigate(movie.trailerLink.substring(movie.trailerLink.length-11))}>
@@ -47,10 +47,10 @@ function Wishlist() {
     </div>  
     ) : (
       <div className='msg' >
-        LogIn to view your wishlist
+        LogIn to view your watchlist
       </div>
     )
   )
 }
 
-export default Wishlist
+export default watchlist

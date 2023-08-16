@@ -3,15 +3,20 @@ import './LogInForm.css'
 import { useRef, useState } from 'react'
 import api from '../../api/axiosConfig'
 
-function LogInForm({setIsFormOpen,setIsLogedIn,setUser}) {
+function LogInForm({type,setIsFormOpen,setIsLogedIn,setUser}) {
   const userName = useRef()
   const password = useRef()
   const [isError,setIsError] = useState(false)
-  const type = "LogIn"
+  let errorMsg = ''
+  if(type === 'LogIn') {
+    errorMsg = 'Either UserName or Password is wrong'
+  }
+  else {
+    errorMsg = 'This username already exists'
+  }
   async function getUserData() {
     try {
-      const response = await api.post('/api/v1/user',{userName:userName.current.value,password:password.current.value})
-      console.log(response.data)
+      const response = await api.post(`api/v1/user/${type}`,{userName:userName.current.value,password:password.current.value})
       setIsLogedIn(true)
       setUser(response.data)
       setIsFormOpen(false)
@@ -53,7 +58,7 @@ function LogInForm({setIsFormOpen,setIsLogedIn,setUser}) {
           {
             isError && (
               <div className='errorMsg' >
-                Either UserName or Password is wrong
+                {errorMsg}
               </div>
             )
           }
