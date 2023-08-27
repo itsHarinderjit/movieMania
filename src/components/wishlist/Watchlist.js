@@ -1,17 +1,21 @@
 import React, { useContext } from 'react'
 import { currentUserContext } from '../../App'
-import { Link, useNavigate } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCirclePlay } from '@fortawesome/free-solid-svg-icons'
+import api from '../../api/axiosConfig'
 import './Watchlist.css'
-import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import MovieTile from './MovieTile'
 
 function watchlist() {
     const {user,setUser} = useContext(currentUserContext)
-    const navigate = useNavigate()
-    function Navigate(movie) {
-      navigate(`/Trailer/${movie}`)
+    async function removeMovieFromWatchlist(movie) {
+      console.log(movie)
+      const response = await api.post('/api/v1/user/removeMovie',{username:user.userName,imdbId:movie.imdbId})
+      let newUser = user
+      const ind = newUser.watchlist.indexOf(movie)
+      console.log(newUser.watchlist[ind])
+      newUser.watchlist.splice(ind,1)
+      setUser(newUser)
+      localStorage.setItem("userInfo",JSON.stringify(user))
     }
   return (
     user !== null ? (
@@ -19,28 +23,7 @@ function watchlist() {
       {
         user.watchlist?.map((movie)=>{
             return (
-                <div className='movie-container'>
-                    <div className='poster-container' onClick={()=>Navigate(movie.trailerLink.substring(movie.trailerLink.length-11))}>
-                      <img src={movie.poster} alt={`${movie.title} poster`} className='poster'/>
-                    </div>
-                    <div className='movie-title'>
-                        {movie.title}
-                    </div>
-                    <div className='movie-attributes'>
-                      <div>
-                        {movie.releaseDate.substr(0,4)}
-                      </div>
-                      {
-                        movie.genres.slice(0,2).map((gen)=>{
-                          return (
-                            <div>
-                              {gen}
-                            </div>
-                          )
-                        })
-                      }
-                    </div>
-                </div>
+                <MovieTile movie={movie} key={movie.imdbId} removeMovieFromWatchlist={removeMovieFromWatchlist}/>
             )
         })
       }

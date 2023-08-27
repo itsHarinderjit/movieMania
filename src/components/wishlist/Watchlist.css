@@ -23,6 +23,7 @@
 .poster-container {
     overflow: hidden;
     position: relative;
+    height: 250px;
 }
 
 .poster {
@@ -32,10 +33,54 @@
     cursor: pointer;
 }
 
-.poster:hover {
+.poster-button-container {
+    position: relative;
+    top: -175px;
+    left: 65px;
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    width: 50px;
+}
+
+.poster-play-button-icon-container {
+    padding: 0px;
+    margin: 0px;
+    width: 50px;
+}
+
+.poster-play-button-icon {
+    padding: 0px;
+    margin: 0px;
+    color: gold;
+    font-size: 3rem;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.poster-remove-movie {
+    z-index: 2;
+    display: none;
+    position: relative;
+    top: -245px;
+    left: 140px;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+}
+
+.poster-container:hover .poster {
     filter: brightness(0.8);
     animation: hoverPoster 0.5s ease;
     animation-fill-mode: forwards;
+}
+
+.poster-container:hover .poster-button-container {
+    display: flex;
+}
+
+.poster-container:hover .poster-remove-movie {
+    display: inline;
 }
 
 .movie-title {
